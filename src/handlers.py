@@ -20,34 +20,17 @@ def register(client):
         if afk:
             afk = False
 
-    @client.on(events.NewMessage(outgoing=True, pattern="^!sed (.*)/(.*)/(.*)"))
-    async def sed_handler(event):
-        search = event.pattern_match.group(1)
-        replacement = event.pattern_match.group(2)
-        message = event.message.reply_to_msg_id
-        flags = event.pattern_match.group(3)
-
-        re.replace(search, replacement, message, flags)
-
-    @client.on(events.NewMessage(outgoing=True, pattern="^!afk (.*)"))
+   @client.on(events.NewMessage(outgoing=True, pattern="^!afk (.*)"))
     async def afk_handler(event):
         global afk, afk_reason
         afk = True
         afk_reason = event.pattern_match.group(1)
         await event.message.edit("Beep boop, I'm a bot. @AgEzRo is now AFK because: " + afk_reason)
 
-    @client.on(events.NewMessage(outgoing=True, pattern="^!ban"))
-    async def ban_reply_handler(event):
-        admin.ban_reply(client, event)
-
-    @client.on(events.NewMessage(outgoing=True, pattern="^!ban (.*)"))
-    async def ban_user_handler(event):
-        admin.ban_user(client, event.pattern_match.group(1))
-
-    @client.on(events.NewMessage(outgoing=True, pattern="^!github$"))
+   @client.on(events.NewMessage(outgoing=True, pattern="^!github$"))
     async def github_handler(event):
         await event.edit("GitHub: https://github.com/Agusyc/")
 
     @client.on(events.NewMessage(outgoing=True, pattern='^!source'))
     async def source_handler(event):
-        await event.edit("Source: https://github.com/Agusyc/UTB/")
+        await event.edit("Source: https://github.com/Agusyc/TUB/")
